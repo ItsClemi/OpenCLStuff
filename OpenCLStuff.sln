@@ -13,15 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helper", "Helper", "{B6EB7722-945B-4C0F-9E1B-6D68C89A3475}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CLCommon", "src\Helper\CLCommon\CLCommon.vcxitems", "{45D41ACC-2C3C-43D2-BC10-02AA73FFC7C7}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatrixAdd", "src\MatrixAdd\MatrixAdd.vcxproj", "{8B57AC8A-3EF0-4E61-B688-3B156F0A411D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sum", "src\Sum\Sum.vcxproj", "{34D2DFC0-C67F-4C00-BB1F-D1212AF28474}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CLCore", "src\CLCore\CLCore.vcxproj", "{02E7BFBA-49DD-4F83-AD47-4FA62C46554E}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\Helper\CLCommon\CLCommon.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
-		src\Helper\CLCommon\CLCommon.vcxitems*{8b57ac8a-3ef0-4e61-b688-3b156f0a411d}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Release|x64 = Release|x64
@@ -31,13 +29,22 @@ Global
 		{8B57AC8A-3EF0-4E61-B688-3B156F0A411D}.Debug|x64.Build.0 = Debug|x64
 		{8B57AC8A-3EF0-4E61-B688-3B156F0A411D}.Release|x64.ActiveCfg = Release|x64
 		{8B57AC8A-3EF0-4E61-B688-3B156F0A411D}.Release|x64.Build.0 = Release|x64
+		{34D2DFC0-C67F-4C00-BB1F-D1212AF28474}.Debug|x64.ActiveCfg = Debug|x64
+		{34D2DFC0-C67F-4C00-BB1F-D1212AF28474}.Debug|x64.Build.0 = Debug|x64
+		{34D2DFC0-C67F-4C00-BB1F-D1212AF28474}.Release|x64.ActiveCfg = Release|x64
+		{34D2DFC0-C67F-4C00-BB1F-D1212AF28474}.Release|x64.Build.0 = Release|x64
+		{02E7BFBA-49DD-4F83-AD47-4FA62C46554E}.Debug|x64.ActiveCfg = Debug|x64
+		{02E7BFBA-49DD-4F83-AD47-4FA62C46554E}.Debug|x64.Build.0 = Debug|x64
+		{02E7BFBA-49DD-4F83-AD47-4FA62C46554E}.Release|x64.ActiveCfg = Release|x64
+		{02E7BFBA-49DD-4F83-AD47-4FA62C46554E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B6EB7722-945B-4C0F-9E1B-6D68C89A3475} = {724BD70A-CAA2-4AB6-BD18-0C517F97E98F}
-		{45D41ACC-2C3C-43D2-BC10-02AA73FFC7C7} = {B6EB7722-945B-4C0F-9E1B-6D68C89A3475}
 		{8B57AC8A-3EF0-4E61-B688-3B156F0A411D} = {724BD70A-CAA2-4AB6-BD18-0C517F97E98F}
+		{34D2DFC0-C67F-4C00-BB1F-D1212AF28474} = {724BD70A-CAA2-4AB6-BD18-0C517F97E98F}
+		{02E7BFBA-49DD-4F83-AD47-4FA62C46554E} = {B6EB7722-945B-4C0F-9E1B-6D68C89A3475}
 	EndGlobalSection
 EndGlobal

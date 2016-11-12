@@ -1,18 +1,15 @@
 #include "stdafx.h"
-#include "OpenCLMgr.h"
 
 #include "Matrix.h"
 
 int main( )
 {
-	try
+	InitializeSystem( );
+
+	if( !GetCLManager( )->Initialize( ) || !GetCLManager( )->CreateProgram( "Matrix_Kernel.cl", "MatAddKernel", nullptr ) )
 	{
-		OpenCLMgr::GetInstance( )->Init( "Matrix_Kernel.cl", "MatAddKernel" );
-	}
-	catch( const std::exception& e )
-	{
-		std::cout << "failed to initialize kernel!" << std::endl << e.what( ) << std::endl;
-		system( "pause" );
+		_gettch( );
+		return EXIT_FAILURE;
 	}
 
 	std::cout << "matrix size?" << std::endl; 
@@ -25,7 +22,6 @@ int main( )
 		std::cout << "invalid number!" << std::endl;
 		return 0;
 	}
-
 
 
 	Matrix A( nSize, nSize );

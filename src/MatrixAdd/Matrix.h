@@ -29,7 +29,6 @@ public:
 
 
 private:
-
 	cl_int width;
 	cl_int height;
 	cl_float *data;

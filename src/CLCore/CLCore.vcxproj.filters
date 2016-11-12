@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{9fc16f42-a721-47c7-8e82-b12a872acfc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export">
+      <UniqueIdentifier>{18956c86-8bc6-4bf5-9d68-d4d8865848ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{a2c36e83-3a14-4da0-9b89-2b696687be41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Helper">
+      <UniqueIdentifier>{81a67eac-caf2-455a-a57e-3298bef9aa90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenCL">
+      <UniqueIdentifier>{76ee06b5-d652-4b2a-866a-5a56d96dc02c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\CoreExport.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="Export\CoreExportStruct.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="System\System.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Helper\CommonHelper.h">
+      <Filter>Common\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenCL\OpenCLManager.h">
+      <Filter>OpenCL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenCL\OpenCLProgram.h">
+      <Filter>OpenCL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="System\System.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCL\OpenCLManager.cpp">
+      <Filter>OpenCL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCL\OpenCLProgram.cpp">
+      <Filter>OpenCL</Filter>
+    </ClCompile>
+    <ClCompile Include="Export\CoreExport.cpp">
+      <Filter>Export</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
