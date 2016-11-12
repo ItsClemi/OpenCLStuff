@@ -60,7 +60,7 @@ private:
 	cl_uint				m_nDeviceNo = 1;
 	cl_device_id*		m_pDevices = nullptr;
 
-	cl_platform_id*		m_pPlatformBuffer;
+	cl_platform_id*		m_pPlatformBuffer = nullptr;
 
 	cl_context			m_pContext = nullptr;
 	cl_command_queue	m_pCommandQueue = nullptr;

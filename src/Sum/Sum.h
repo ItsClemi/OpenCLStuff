@@ -1,8 +1,3 @@
 #pragma once
-class Sum
-{
-public:
-	Sum( );
-	~Sum( );
-};
 
+cl_int sum( cl_int *input, int size, ICLProgram* pProgram );

@@ -6,7 +6,8 @@
 
 COpenCLProgram::COpenCLProgram( ICLManager* pManager )
 	: m_pManager( pManager )
-{ }
+{ 
+}
 
 COpenCLProgram::~COpenCLProgram( )
 {
@@ -24,7 +25,10 @@ COpenCLProgram::~COpenCLProgram( )
 bool COpenCLProgram::CreateProgram( const char* szFile, const char* szKernel )
 {
 	std::vector< char > vecBuffer;
-	LoadFromFile( std::move( szFile ), vecBuffer );
+	if( !LoadFromFile( std::move( szFile ), vecBuffer ) )
+	{
+		return false;
+	}
 
 	cl_int status;
 	const char* szBuffer = &vecBuffer[ 0 ];
@@ -91,16 +95,16 @@ std::string COpenCLProgram::GetBuildErrorMsg( )
 
 	size_t nStrLen;
 	status = clGetProgramBuildInfo( GetProgram( ), const_cast< cl_device_id >( GetManager( )->GetTargetDevice( ) ), CL_PROGRAM_BUILD_LOG, 0, nullptr, &nStrLen );
-	if( CL_SUCCEEDED( status ) )
+	if( !CL_SUCCEEDED( status ) )
 	{
-		std::cout << __FUNCTION__ << " failed to get clGetProgramBuildInfo length " << std::hex << status << std::endl;
+		std::cout << __FUNCTION__ << " failed to get clGetProgramBuildInfo length status: " << std::hex << status << std::endl;
 		return std::string( );
 	}
 
 	szErrorBuffer.resize( nStrLen + 1 );
 
 	status = clGetProgramBuildInfo( m_pProgram, GetManager( )->GetTargetDevice( ), CL_PROGRAM_BUILD_LOG, szErrorBuffer.length( ), const_cast< char* >( szErrorBuffer.c_str( ) ), nullptr );
-	if( CL_SUCCEEDED( status ) )
+	if( !CL_SUCCEEDED( status ) )
 	{
 		std::cout << __FUNCTION__ << " failed to get clGetProgramBuildInfo " << std::hex << status << std::endl;
 		return std::string( );

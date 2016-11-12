@@ -45,8 +45,8 @@ private:
 
 private:
 	ICLManager*		m_pManager;
-	cl_kernel		m_pKernel;
-	cl_program		m_pProgram;
+	cl_kernel		m_pKernel = nullptr;
+	cl_program		m_pProgram = nullptr;
 	std::string		m_szProgramName;
 
 };

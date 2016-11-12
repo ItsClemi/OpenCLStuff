@@ -21,10 +21,24 @@ __kernel void summe_kernel( __global int* in, __global int* out )
 	int lid = get_local_id( 0 );
 	int groupid = get_group_id( 0 );
 
-	// TODO
 
 	__local int localArray[ 256 ];
+	
+	localArray[ lid ] = in[ lid << 1 ] + in[ ( lid << 1 ) + 1 ];
+
 	barrier( CLK_LOCAL_MEM_FENCE );
 
 
+	for( int i = 1; i < log2( 512.0f ); i++ )
+	{
+
+		if( lid == ( lid << i ) )
+		{
+			localArray[ lid << i ] = localArray[ lid << i ] + localArray[ ( lid << i ) + 1 ];
+		}
+
+		barrier( CLK_LOCAL_MEM_FENCE );
+	}
+
+	out[ 0 ] = localArray[ 0 ];
 }
