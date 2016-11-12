@@ -88,12 +88,20 @@ Matrix Matrix::operator+( const Matrix& m )
 			clSetKernelArg( pKernel, 7, sizeof( cl_int ), &result.height );
 			clSetKernelArg( pKernel, 8, sizeof( cl_mem ), &pCElements );
 
+			size_t wX = 16 + ( ( static_cast< size_t >( width ) >> 4 ) * 16 );
+			size_t wY = 16 + ( ( static_cast< size_t >( height ) >> 4 ) * 16 );
 
-			size_t global_work_size[ 1 ] = { 1 };
-			size_t local_work_size[ 1 ] = { 1 };
+			size_t global_work_size[ 2 ] = { wX, wY };
+			size_t local_work_size[ 2 ] = { 16, 16 };
 
-			status = clEnqueueNDRangeKernel( pCommandQueue, pKernel, 1, nullptr, global_work_size, local_work_size, 0, nullptr, nullptr );
+			status = clEnqueueNDRangeKernel( pCommandQueue, pKernel, 2, nullptr, global_work_size, local_work_size, 0, nullptr, nullptr );
 
+
+			status = clEnqueueReadBuffer( pCommandQueue, pCElements, CL_TRUE, 0, result.width * result.height * sizeof( cl_float ), result.data, 0, nullptr, nullptr );
+
+			status = clReleaseMemObject( pCElements );
+			status = clReleaseMemObject( pBElements );
+			status = clReleaseMemObject( pAElements );
 
 			return result;
 		}

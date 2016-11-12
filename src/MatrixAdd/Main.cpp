@@ -15,9 +15,21 @@ int main( )
 		system( "pause" );
 	}
 
+	std::cout << "matrix size?" << std::endl; 
+	
+	int nSize = 0;
+	std::cin >> nSize;
 
-	Matrix A( 500, 500 );
-	Matrix B( 500, 500 );
+	if( nSize <= 0 )
+	{
+		std::cout << "invalid number!" << std::endl;
+		return 0;
+	}
+
+
+
+	Matrix A( nSize, nSize );
+	Matrix B( nSize, nSize );
 	Matrix C;
 
 	for( int x = 0; x < A.GetWidth( ); x++ )
@@ -40,6 +52,18 @@ int main( )
 
 	C = A + B;
 
+	for( int x = 0; x < C.GetWidth( ); x++ )
+	{
+		for( int y = 0; y < C.GetHeight( ); y++ )
+		{
+			std::cout << C.Elem( x, y ) << " ";
+		}
+
+		std::cout << std::endl;
+	}
+
+
+	_gettch( );
 
 	return 0;
 }

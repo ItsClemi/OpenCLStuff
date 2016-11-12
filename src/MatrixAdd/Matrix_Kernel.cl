@@ -42,7 +42,11 @@ __kernel void MatAddKernel(
 	int col = get_global_id( 0 );
 	int row = get_global_id( 1 );
 
+	if( col < Awidth && row < Aheight )
+	{
+		const int it = ( row * Awidth ) + col;
 
-	C.elements[  ]
+		C.elements[ it ] = Aelements[ it ] + Belements[ it ];
+	}
 }
 
