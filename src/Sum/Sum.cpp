@@ -21,6 +21,9 @@ cl_int sumRec( cl_mem inputBuffer, int size, ICLProgram* pProgram )
 
 	// create OpenCl buffer for output
 	cl_mem outputBuffer = clCreateBuffer( pProgram->GetContext( ), CL_MEM_READ_WRITE, cloutsize * sizeof( cl_int ), NULL, NULL );
+// 	cl_mem outputHelperBuff = clCreateBuffer( pProgram->GetContext( ), CL_MEM_WRITE_ONLY, cloutsize * sizeof( cl_int ), nullptr, nullptr );
+// 	cl_mem outputHelperBuff2 = clCreateBuffer( pProgram->GetContext( ), CL_MEM_WRITE_ONLY, cloutsize * sizeof( cl_int ), nullptr, nullptr );
+
 
 	// Set kernel arguments.
 	status = clSetKernelArg( pProgram->GetKernel( ), 0, sizeof( cl_mem ), ( void * )&inputBuffer );
@@ -38,6 +41,10 @@ cl_int sumRec( cl_mem inputBuffer, int size, ICLProgram* pProgram )
 		return status;
 	}
 
+// 	clSetKernelArg( pProgram->GetKernel( ), 2, sizeof( cl_mem ), ( void* )&outputHelperBuff );
+// 	clSetKernelArg( pProgram->GetKernel( ), 3, sizeof( cl_mem ), ( void* )&outputHelperBuff2 );
+
+
 	// Run the kernel.
 	size_t global_work_size[ 1 ] = { size / 2 };
 	size_t local_work_size[ 1 ] = { 256 };
@@ -48,33 +55,50 @@ cl_int sumRec( cl_mem inputBuffer, int size, ICLProgram* pProgram )
 		return status;
 	}
 
-//	if( outsize == 1 )	// entire sum has been calculated and stored at the beginning of the output buffer
+
+
+
+// 	cl_int arrBuffer_1[ 513 ] = { 0, };
+// 	status = clEnqueueReadBuffer( pProgram->GetCommandQueue( ), outputBuffer, CL_TRUE, 0, sizeof( cl_int ) * 512, &arrBuffer_1, 0, NULL, NULL );
+// 
+// 
+// 	cl_int arrBuffer[ 513 ] = { 0, };
+// 	status = clEnqueueReadBuffer( pProgram->GetCommandQueue( ), outputHelperBuff, CL_TRUE, 0, sizeof( cl_int ) * 512, &arrBuffer, 0, NULL, NULL );
+// 
+// 
+// 	cl_int arrBuffer2[ 513 ] = { 0, };
+// 	status = clEnqueueReadBuffer( pProgram->GetCommandQueue( ), outputHelperBuff2, CL_TRUE, 0, sizeof( cl_int ) * 512, &arrBuffer2, 0, NULL, NULL );
+
+
+
+
+	if( outsize == 1 )	// entire sum has been calculated and stored at the beginning of the output buffer
 	{
 		// Read the output back to host memory.
-		status = clEnqueueReadBuffer( pProgram->GetCommandQueue( ), outputBuffer, CL_TRUE, 0, sizeof( cl_int ), &result, 0, NULL, NULL );
+ 		status = clEnqueueReadBuffer( pProgram->GetCommandQueue( ), outputBuffer, CL_TRUE, 0, sizeof( cl_int ), &result, 0, NULL, NULL );
 		if( status != CL_SUCCESS )
 		{
 			std::cout << __FUNCTION__ << " Error: reading buffer! " << std::hex << status << std::endl;
 			return status;
 		}
 	}
-// 	else	// more than one value is stored in the output buffer ==> call function recursively
-// 	{
-// 		if( outsize < cloutsize )	// output buffer is not filled completely and contains "empty" space at the end
-// 		{
-// 			// this empty space must be filled with 0
-// 			// for example: when 1000 output values have been calculated, the 24 additional elements at the end must be set to 0
-// 			cl_int tmp[ 512 ] = { 0 };
-// 			status = clEnqueueWriteBuffer( pProgram->GetCommandQueue( ), outputBuffer, CL_TRUE, outsize * sizeof( cl_int ), ( cloutsize - outsize ) * sizeof( cl_int ), &tmp, 0, NULL, NULL );
-// 			if( status != CL_SUCCESS )
-// 			{
-// 				std::cout << __FUNCTION__ << " Error: writing buffer! " << std::hex << status << std::endl;
-// 				return status;
-// 			}
-// 		}
-// 
-// 		result = sumRec( outputBuffer, cloutsize, pProgram );
-// 	}
+ 	else	// more than one value is stored in the output buffer ==> call function recursively
+ 	{
+ 		if( outsize < cloutsize )	// output buffer is not filled completely and contains "empty" space at the end
+ 		{
+ 			// this empty space must be filled with 0
+ 			// for example: when 1000 output values have been calculated, the 24 additional elements at the end must be set to 0
+ 			cl_int tmp[ 512 ] = { 0 };
+ 			status = clEnqueueWriteBuffer( pProgram->GetCommandQueue( ), outputBuffer, CL_TRUE, outsize * sizeof( cl_int ), ( cloutsize - outsize ) * sizeof( cl_int ), &tmp, 0, NULL, NULL );
+ 			if( status != CL_SUCCESS )
+ 			{
+ 				std::cout << __FUNCTION__ << " Error: writing buffer! " << std::hex << status << std::endl;
+ 				return status;
+ 			}
+ 		}
+ 
+ 		result = sumRec( outputBuffer, cloutsize, pProgram );
+ 	}
 
 	// release buffers
 	status = clReleaseMemObject( outputBuffer );
