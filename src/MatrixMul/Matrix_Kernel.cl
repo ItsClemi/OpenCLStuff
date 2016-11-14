@@ -1,10 +1,10 @@
 /**********************************************************************
-Copyright ©2013 Advanced Micro Devices, Inc. All rights reserved.
+Copyright 2013 Advanced Micro Devices, Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
-•	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-•	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or
 other materials provided with the distribution.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -14,30 +14,34 @@ OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY TH
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ********************************************************************/
 
-
-__kernel void summe_kernel( __global int* in, __global int* out )
+// Kernel code
+// Matrices are stored in row-major order:
+// M(row, col) = *(M.elements + row * M.width + col)
+typedef struct
 {
-	int gid = get_global_id( 0 );
-	int lid = get_local_id( 0 );
-	int groupid = get_group_id( 0 );
+	int width;
+	int height;
+	__global float* elements;
+} Matrix;
 
-	__local int localArray[ 256 ];
-	
-	localArray[ lid ] = in[ gid << 1 ] + in[ ( gid << 1 ) + 1 ];
-	barrier( CLK_LOCAL_MEM_FENCE );
-
-
-	const int it = 9;// ( int )log2( 512.0f );
-	for( int i = 1; i < it; i++ )
-	{
-		localArray[ lid << i ] = localArray[ lid << i ] + localArray[ ( lid << i ) + ( 1 << ( i - 1 ) ) ];
-
-		barrier( CLK_LOCAL_MEM_FENCE );
-	}
+// Thread block size
+#define BLOCK_SIZE 16
 
 
-	if( lid == 0 )
-	{
-		out[ groupid ] = localArray[ 0 ];
-	}
+// Matrix addition kernel called by MatAddHost()
+__kernel void MatMulKernel( 
+	int Awidth, int Aheight, __global float* Aelements,
+	int Bwidth, int Bheight, __global float* Belements,
+	int Cwidth, int Cheight, __global float* Celements
+)
+{
+	Matrix A = { Awidth, Aheight, Aelements };
+	Matrix B = { Bwidth, Bheight, Belements };
+	Matrix C = { Cwidth, Cheight, Celements };
+
+	const int col = get_global_id( 0 );
+	const int row = get_global_id( 1 );
+
+
 }
+

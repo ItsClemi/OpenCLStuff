@@ -58,8 +58,8 @@ cl_int sumRec( cl_mem inputBuffer, int size, ICLProgram* pProgram )
 
 
 
-// 	cl_int arrBuffer_1[ 513 ] = { 0, };
-// 	status = clEnqueueReadBuffer( pProgram->GetCommandQueue( ), outputBuffer, CL_TRUE, 0, sizeof( cl_int ) * 512, &arrBuffer_1, 0, NULL, NULL );
+ 	//cl_int arrBuffer_1[ 513 ] = { 0, };
+ 	//status = clEnqueueReadBuffer( pProgram->GetCommandQueue( ), outputBuffer, CL_TRUE, 0, sizeof( cl_int ) * 512, &arrBuffer_1, 0, NULL, NULL );
 // 
 // 
 // 	cl_int arrBuffer[ 513 ] = { 0, };
