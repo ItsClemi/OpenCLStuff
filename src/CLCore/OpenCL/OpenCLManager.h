@@ -64,9 +64,8 @@ private:
 
 	cl_context			m_pContext = nullptr;
 	cl_command_queue	m_pCommandQueue = nullptr;
-	cl_program			m_pProgram = nullptr;
 
-	cl_kernel			m_pKernel = nullptr;
+
 
 	bool				m_bUseGPU = false;
 

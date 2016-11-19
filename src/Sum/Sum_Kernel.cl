@@ -30,7 +30,10 @@ __kernel void summe_kernel( __global int* in, __global int* out )
 	const int it = 9;// ( int )log2( 512.0f );
 	for( int i = 1; i < it; i++ )
 	{
-		localArray[ lid << i ] = localArray[ lid << i ] + localArray[ ( lid << i ) + ( 1 << ( i - 1 ) ) ];
+		if( ( lid << i ) < 255 )
+		{
+			localArray[ lid << i ] = localArray[ lid << i ] + localArray[ ( lid << i ) + ( 1 << ( i - 1 ) ) ];
+		}
 
 		barrier( CLK_LOCAL_MEM_FENCE );
 	}

@@ -15,11 +15,11 @@ int main()
 
 	std::cout << "Size of array?" << std::endl;
 
-	cl_int nSize = 12000000;
-
+	size_t nSize;
 	std::cin >> nSize;
 
 	cl_int* pNumbers = new cl_int[ nSize ];
+
 	for( cl_int i = 0; i < nSize; i++ )
 	{
 		pNumbers[ i ] = 1;
@@ -27,7 +27,7 @@ int main()
 
 	cl_int nResult = sum( pNumbers, nSize, pProgram );
 
-	std::cout << "result " << nResult << std::endl;
+	std::cout << "input " << nSize << " result " << nResult << std::endl;
 
 	delete[ ] pNumbers;
 
