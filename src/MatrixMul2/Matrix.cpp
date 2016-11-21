@@ -82,6 +82,7 @@ Matrix Matrix::operator*( const Matrix & m )
 	
 		status = clEnqueueReadBuffer( pProgram->GetCommandQueue( ), pCElements, CL_TRUE, 0, result.width * result.height * sizeof( cl_float ), result.data, 0, nullptr, nullptr );
 
+
 		status = clReleaseMemObject( pCElements );
 		status = clReleaseMemObject( pBElements );
 		status = clReleaseMemObject( pAElements );

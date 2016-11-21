@@ -39,9 +39,18 @@ __kernel void MatMulKernel(
 	Matrix B = { Bwidth, Bheight, Belements };
 	Matrix C = { Cwidth, Cheight, Celements };
 
-	const int col = get_global_id( 0 );
-	const int row = get_global_id( 1 );
 
+	int col = get_global_id( 0 );
+	int row = get_global_id( 1 );
+	
+	float Cvalue = 0;
+	for( int i = 0; i < A.width; i++ )
+	{
+		Cvalue += A.elements[ row * A.width + i ] * B.elements[ i * B.width + col ];
+	}
 
+	C.elements[ row * C.width + col ] = Cvalue;
 }
+
+
 

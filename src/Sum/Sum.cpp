@@ -39,21 +39,21 @@ cl_int sumRec( cl_mem inputBuffer, size_t size, ICLProgram* pProgram )
 	}
 
 
-	//auto time = FunctionMeasure::Measure< std::chrono::microseconds >( [ & ]( ) {
-	size_t global_work_size[ 1 ] = { size / 2 };
-	size_t local_work_size[ 1 ] = { 256 };
-	status = clEnqueueNDRangeKernel( pProgram->GetCommandQueue( ), pProgram->GetKernel( ), 1, NULL, global_work_size, local_work_size, 0, NULL, NULL );
-	if( status != CL_SUCCESS )
-	{
-		std::cout << __FUNCTION__ << " Error: enqueuing kernel! " << std::hex << status << std::endl;
-		return status;
-	}
+	auto time = FunctionMeasure::Measure< std::chrono::microseconds >( [ & ]( ) {
+		size_t global_work_size[ 1 ] = { size / 2 };
+		size_t local_work_size[ 1 ] = { 256 };
+		status = clEnqueueNDRangeKernel( pProgram->GetCommandQueue( ), pProgram->GetKernel( ), 1, NULL, global_work_size, local_work_size, 0, NULL, NULL );
+		if( status != CL_SUCCESS )
+		{
+			std::cout << __FUNCTION__ << " Error: enqueuing kernel! " << std::hex << status << std::endl;
+			//return status;
+		}
 
-	status = clFinish( pProgram->GetCommandQueue( ) );
+		status = clFinish( pProgram->GetCommandQueue( ) );
 
-	//} );
+	} );
 
-	//std::cout << "iteration finished in " << time << " microseconds " << std::endl;
+	std::cout << "iteration finished in " << time << " microseconds " << std::endl;
 
 
 

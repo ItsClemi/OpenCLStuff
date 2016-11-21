@@ -27,7 +27,7 @@ int main()
 		return EXIT_FAILURE;
 	}
 
-	cl_int nSize = 16;
+	cl_int nSize = 128;
 	Matrix A( nSize, nSize );
 	Matrix B( nSize, nSize );
 	Matrix C;

@@ -83,11 +83,13 @@ Matrix Matrix::operator+( const Matrix& m )
 			clSetKernelArg( pProgram->GetKernel( ), 7, sizeof( cl_int ), &result.height );
 			clSetKernelArg( pProgram->GetKernel( ), 8, sizeof( cl_mem ), &pCElements );
 
-			size_t wX = 16 + ( ( static_cast< size_t >( width ) >> 4 ) * 16 );
-			size_t wY = 16 + ( ( static_cast< size_t >( height ) >> 4 ) * 16 );
 
-			size_t global_work_size[ 2 ] = { wX, wY };
-			size_t local_work_size[ 2 ] = { 16, 16 };
+			size_t lsize = 16;
+			size_t gwidth, gheight;
+			gwidth = ( ( result.width + lsize - 1 ) / lsize )*lsize;
+			gheight = ( ( result.height + lsize - 1 ) / lsize )*lsize;
+			size_t global_work_size[ 2 ] = { gwidth, gheight };
+			size_t local_work_size[ 2 ] = { lsize, lsize };
 
 			status = clEnqueueNDRangeKernel( pProgram->GetCommandQueue( ), pProgram->GetKernel( ), 2, nullptr, global_work_size, local_work_size, 0, nullptr, nullptr );
 
