@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Window">
+      <UniqueIdentifier>{85ef9c12-62bd-4451-97ba-e461f79a6d64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Dialog">
+      <UniqueIdentifier>{5796dc1d-056e-4565-bb96-8d78c436b593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Frame">
+      <UniqueIdentifier>{50a02e99-9e28-45cb-8cef-2e20562b5307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Pane">
+      <UniqueIdentifier>{649b5062-db33-442c-85d4-82e40152c594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{554dd387-fbdb-46bb-af1e-1248b5390374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Window\Dialog\AboutDlg.h">
+      <Filter>Window\Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Frame\MainFrame.h">
+      <Filter>Window\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Frame\AppDoc.h">
+      <Filter>Window\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Frame\AppView.h">
+      <Filter>Window\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Pane\OutputWnd.h">
+      <Filter>Window\Pane</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Window\Dialog\AboutDlg.cpp">
+      <Filter>Window\Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Frame\MainFrame.cpp">
+      <Filter>Window\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Frame\AppDoc.cpp">
+      <Filter>Window\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Frame\AppView.cpp">
+      <Filter>Window\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Pane\OutputWnd.cpp">
+      <Filter>Window\Pane</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ImgTest.rc">
+      <Filter>Common\Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\output_wnd.ico">
+      <Filter>Common\Resource Files</Filter>
+    </Image>
+    <Image Include="res\output_wnd_hc.ico">
+      <Filter>Common\Resource Files</Filter>
+    </Image>
+    <Image Include="UserImages.bmp">
+      <Filter>Common\Resource Files</Filter>
+    </Image>
+    <Image Include="res\ImgTestDoc.ico">
+      <Filter>Common\Resource Files</Filter>
+    </Image>
+    <Image Include="res\ImgTest.ico">
+      <Filter>Common\Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Common\Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar256.bmp">
+      <Filter>Common\Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ImgTest.rc2">
+      <Filter>Common\Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
